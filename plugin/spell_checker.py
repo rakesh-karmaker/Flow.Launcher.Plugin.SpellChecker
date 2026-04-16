@@ -63,7 +63,7 @@ class Main(FlowLauncher):
             suggestions = spell.candidates(text)
             correct_spelling = spell.correction(text)
         
-            if len(suggestions) > 0:
+            if suggestions and len(suggestions) > 0:
                 self.addMessage(
                     f"Did you mean '{correct_spelling}'? ({', '.join(suggestions)})",
                     "",
