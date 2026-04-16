@@ -66,7 +66,7 @@ class Main(FlowLauncher):
             if suggestions and len(suggestions) > 0:
                 self.addMessage(
                     f"Did you mean '{correct_spelling}'? ({', '.join(suggestions)})",
-                    "",
+                    f'{correct_spelling}: {self.getDefinition(correct_spelling)}' if self.ADD_DEFINITION else "",
                     self.IMG_SUGGESTION,
                     correct_spelling
                 )
