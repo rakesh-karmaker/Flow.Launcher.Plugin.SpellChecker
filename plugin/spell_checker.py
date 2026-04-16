@@ -6,7 +6,6 @@ import pyperclip
 spell = SpellChecker(language='en')
     
 class Main(FlowLauncher):
-    MSG_NO_SUGGESTION = "No suggestions found for '{}'."
     IMG_SUCCESS = "success"
     IMG_FAILURE = "failure"
     IMG_SUGGESTION = "suggestion"
@@ -25,9 +24,6 @@ class Main(FlowLauncher):
                 "parameters": [copyText if copyText is not None else ""]
             }
         })
-
-    def copyToClipboard(self, text: str):
-        pyperclip.copy(text)
 
     def tryToParseValueAsText(self, text: str):
         if text.strip() == "":
@@ -105,3 +101,6 @@ class Main(FlowLauncher):
                 )
 
         return self.messages
+    
+    def copyToClipboard(self, text: str):
+        pyperclip.copy(text)
