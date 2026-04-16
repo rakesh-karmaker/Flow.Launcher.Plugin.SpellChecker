@@ -13,9 +13,9 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
+    env:
+      python_ver: 3.11
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -35,6 +35,7 @@ jobs:
           pip install -r ./requirements.txt -t ./lib
           zip -r Flow.Launcher.Plugin.SpellChecker.zip . -x '*.git*'
       - name: Publish
+        if: success()
         uses: softprops/action-gh-release@v1
         with:
           files: "Flow.Launcher.Plugin.SpellChecker.zip"
