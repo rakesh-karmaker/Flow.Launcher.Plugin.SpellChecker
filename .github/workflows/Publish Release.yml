@@ -3,8 +3,8 @@ name: Publish Release
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
-    paths-ignore: 
+    branches: [main]
+    paths-ignore:
       - .github/workflows/*
 
 jobs:
@@ -22,19 +22,19 @@ jobs:
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
-        with: 
-          path: 'plugin.json'
-          prop_path: 'Version'
-      - run: echo ${{steps.version.outputs.prop}} 
+        with:
+          path: "plugin.json"
+          prop_path: "Version"
+      - run: echo ${{steps.version.outputs.prop}}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r ./requirements.txt -t ./lib
-          zip -r Flow.Launcher.Plugin.IsPrime.zip . -x '*.git*'
+          zip -r Flow.Launcher.Plugin.SpellChecker.zip . -x '*.git*'
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
-          files: 'Flow.Launcher.Plugin.IsPrime.zip'
+          files: "Flow.Launcher.Plugin.SpellChecker.zip"
           tag_name: "v${{steps.version.outputs.prop}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
