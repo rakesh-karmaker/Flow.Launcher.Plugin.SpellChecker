@@ -3,4 +3,3 @@ pyspellchecker
 nltk
 pyperclip
 wikipedia
-warnings
