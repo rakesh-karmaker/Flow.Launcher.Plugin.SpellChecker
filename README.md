@@ -2,6 +2,8 @@
 
 A [Flow Launcher](https://github.com/Flow-Launcher/Flow.Launcher) plugin that checks spelling and can show a short meaning for a word.
 
+![screenshot](assets/demo.png)
+
 ## About
 
 Type one or more words and the plugin will check whether each word is spelled correctly.
@@ -19,6 +21,8 @@ This plugin depends on the following Python packages:
 - `flowlauncher`
 - `pyspellchecker`
 - `pyperclip`
+- `wikipedia`
+- `warnings`
 - `nltk` (optional, for WordNet-based definitions)
 
 If you want to use WordNet-based definitions, download the WordNet data:
@@ -27,7 +31,7 @@ If you want to use WordNet-based definitions, download the WordNet data:
 python -m nltk.downloader wordnet
 ```
 
-If WordNet is not installed, definition lookup will fall back to the available dictionary source or return a simple "WordNet is not installed. Run: python -m nltk.downloader wordnet" message.
+If WordNet is not installed, definition lookup will fall back to the available dictionary source (Wikipedia) and there will be a "WordNet is not installed thus the definition may be slow. Run: python -m nltk.downloader wordnet" message at the end of the definition.
 
 ## Installation
 
