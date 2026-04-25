@@ -80,13 +80,15 @@ class Main(FlowLauncher):
                 )
                 wikipedia_definition = wikipedia.summary(text, sentences=1)
                 if wikipedia_definition:
-                    return f"{wikipedia_definition}{wordnet_error_note}"
+                    return "{}{}".format(wikipedia_definition, wordnet_error_note)
                 else:
-                    return f"No definition found{wordnet_error_note}"
+                    return "No definition found{}".format(wordnet_error_note)
             return wordnet_definition
 
         except wikipedia.exceptions.DisambiguationError as e:
-            return f"Multiple definitions found for '{text}': {', '.join(e.options[:5])}..."
+            return "Multiple definitions found for '{}': {}...".format(
+                text, ", ".join(e.options[:5])
+            )
         except:
             return "No definition found"
 
@@ -94,7 +96,7 @@ class Main(FlowLauncher):
         misspelled = spell.unknown([text])
         if len(misspelled) == 0:
             self.addMessage(
-                f"'{text}' is spelled correctly.",
+                "'{}' is spelled correctly.".format(text),
                 self.getDefinition(text),
                 self.IMG_SUCCESS,
                 text,
@@ -110,10 +112,22 @@ class Main(FlowLauncher):
                     else None
                 )
                 connected_suggestions = ", ".join(suggestions) if suggestions else ""
+                suggestion_suffix = (
+                    "({})".format(connected_suggestions)
+                    if connected_suggestions
+                    else ""
+                )
+                suggestion_title = "Did you mean '{}'?".format(correct_spelling)
+                if suggestion_suffix:
+                    suggestion_title = "{} {}".format(
+                        suggestion_title, suggestion_suffix
+                    )
                 self.addMessage(
-                    f"Did you mean '{correct_spelling}'? {f'({connected_suggestions})' if connected_suggestions else ''}".strip(),
+                    suggestion_title,
                     (
-                        f"{correct_spelling}: {self.getDefinition(correct_spelling)}"
+                        "{}: {}".format(
+                            correct_spelling, self.getDefinition(correct_spelling)
+                        )
                         if self.ADD_DEFINITION
                         else ""
                     ),
@@ -122,7 +136,7 @@ class Main(FlowLauncher):
                 )
             else:
                 self.addMessage(
-                    f"'{text}' is misspelled and no suggestions available.",
+                    "'{}' is misspelled and no suggestions available.".format(text),
                     "",
                     self.IMG_FAILURE,
                 )
