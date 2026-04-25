@@ -45,15 +45,20 @@ After installing or updating the plugin, restart Flow Launcher.
 
 ## Usage
 
-| Keyword        | Description                                                                     |
-| -------------- | ------------------------------------------------------------------------------- |
-| `spell {word}` | check whether a word is spelled correctly and show a short meaning if available |
+| Keyword            | Description                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| `spell {word}`     | check whether a word is spelled correctly                                                         |
+| `spell -d {word}`  | check spelling and show word definitions                                                          |
+| `spell -dw {word}` | check spelling and show definitions from Wikipedia only (`-dw` must be at the start of the query) |
 
 Examples:
 
 - `spell death`
 - `spell accomodate`
 - `spell hello world`
+- `spell -d death`
+- `spell -d hello world`
+- `spell -dw death`
 
 ## Notes
 
